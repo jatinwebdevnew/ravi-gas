@@ -71,9 +71,13 @@
     <script>
       // Fallback: Force dismiss the preloader after 800ms if remote JS hasn't run
       function dismissPreloader() {
-        // Remove 'loading' class from body (this is what the theme's JS normally does)
-        document.body.classList.remove('loading');
-        document.documentElement.classList.remove('loading');
+        // Remove 'loading' class from body and html element (with safety null-checks)
+        if (document.body) {
+          document.body.classList.remove('loading');
+        }
+        if (document.documentElement) {
+          document.documentElement.classList.remove('loading');
+        }
         // Also forcibly hide the preloader div
         var preloader = document.querySelector('.site-preloader');
         if (preloader) {
