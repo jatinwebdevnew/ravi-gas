@@ -69,19 +69,33 @@
       }
     </style>
     <script>
-      // Fallback: Force dismiss the preloader after 1.5 seconds if window.onload is blocked or slow
-      setTimeout(function() {
+      // Fallback: Force dismiss the preloader after 800ms if remote JS hasn't run
+      function dismissPreloader() {
+        // Remove 'loading' class from body (this is what the theme's JS normally does)
+        document.body.classList.remove('loading');
+        document.documentElement.classList.remove('loading');
+        // Also forcibly hide the preloader div
         var preloader = document.querySelector('.site-preloader');
-        if (preloader && window.getComputedStyle(preloader).display !== 'none') {
-          console.log('Force dismissing preloader due to slow resource load...');
-          preloader.style.transition = 'opacity 0.5s ease-out';
+        if (preloader) {
+          preloader.style.transition = 'opacity 0.4s ease-out';
           preloader.style.opacity = '0';
-          setTimeout(function() {
-            preloader.style.display = 'none';
-          }, 500);
+          preloader.style.pointerEvents = 'none';
+          setTimeout(function() { preloader.style.display = 'none'; }, 400);
         }
-      }, 1500);
+      }
+      // Run after 800ms — enough time for local assets to parse, not enough to stall
+      setTimeout(dismissPreloader, 800);
+      // Also try to run as soon as DOM is ready (in case scripts load fast)
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+          setTimeout(dismissPreloader, 300);
+        });
+      }
     </script>
+    <style>
+      /* Ensure preloader cannot block page even if JS is slow */
+      body:not(.loading) .site-preloader { display: none !important; }
+    </style>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Ravi Gas Service - Gurgaon Top Commercial LPG Distributor</title>
