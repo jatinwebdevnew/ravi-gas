@@ -1,0 +1,16 @@
+{
+  "projectId": "prj_NH7Y1TBTwz2WQXDgU6id4x4O0ZKn",
+  "orgId": "team_BNhUR3mgBzNxSnnp87nV1PqX",
+  "projectName": "ravigas",
+  "settings": {
+    "createdAt": 1782794759891,
+    "framework": null,
+    "devCommand": null,
+    "installCommand": null,
+    "buildCommand": null,
+    "outputDirectory": null,
+    "rootDirectory": null,
+    "directoryListing": false,
+    "nodeVersion": "24.x"
+  }
+}
