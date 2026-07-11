@@ -257,8 +257,9 @@
           display: flex !important;
           justify-content: space-between !important;
           align-items: center !important;
-          font-size: 11px !important;
+          font-size: 12px !important;
           padding: 6px 20px !important;
+          background-color: #787750 !important;
           overflow: hidden !important;
           white-space: nowrap !important;
           height: auto !important;
@@ -274,20 +275,21 @@
           padding: 0 !important;
           flex-wrap: nowrap !important;
         }
-        .elementor-element-e9d8a92, .elementor-element-4c6f085 {
-          width: auto !important;
+        .elementor-element-e9d8a92 {
+          width: 100% !important;
           max-width: none !important;
           margin: 0 !important;
         }
-        .elementor-element-e9d8a92 .elementor-icon-list-items.elementor-inline-items,
-        .elementor-element-4c6f085 .elementor-icon-list-items.elementor-inline-items {
+        .elementor-element-e9d8a92 .elementor-icon-list-items.elementor-inline-items {
           display: flex !important;
           flex-direction: row !important;
           flex-wrap: nowrap !important;
+          justify-content: space-between !important;
           align-items: center !important;
+          width: 100% !important;
         }
 
-        /* 3. Main nav row (logo + nav + button) */
+        /* 3. Main nav row (logo + nav + cart + social + button) */
         .elementor-element-af47230 {
           width: 100% !important;
           max-width: 100% !important;
@@ -307,10 +309,11 @@
           align-items: center !important;
           justify-content: space-between !important;
           padding: 0 20px !important;
+          height: 80px !important;
           min-height: 80px !important;
-          height: auto !important;
           width: 100% !important;
           flex-wrap: nowrap !important;
+          background-color: #242424 !important;
         }
 
         /* 4. Logo area (left) */
@@ -318,7 +321,7 @@
           flex-shrink: 0 !important;
           display: flex !important;
           align-items: center !important;
-          gap: 10px !important;
+          gap: 12px !important;
           margin: 0 !important;
         }
         .site-logo img {
@@ -328,6 +331,8 @@
         }
         .site-logo a span {
           font-size: 20px !important;
+          font-weight: 900 !important;
+          color: #0077d4 !important;
         }
 
         /* 5. Nav items (center) */
@@ -346,15 +351,13 @@
         .site-menu {
           display: flex !important;
           align-items: center !important;
-          float: none !important;
-          position: relative !important;
         }
         .site-menu > ul {
           display: flex !important;
           flex-direction: row !important;
           align-items: center !important;
           flex-wrap: nowrap !important;
-          gap: 4px !important; /* Gap between nav items */
+          gap: 4px !important;
           overflow: hidden !important;
           margin: 0 !important;
           padding: 0 !important;
@@ -374,7 +377,8 @@
           font-size: 13px !important;
           letter-spacing: 0.3px !important;
           white-space: nowrap !important;
-          padding: 0 14px !important; /* Nav item padding: 0 14px */
+          padding: 0 12px !important;
+          color: #ffffff !important;
           display: inline-block !important;
           float: none !important;
           position: relative !important;
@@ -395,7 +399,68 @@
           color: #ff5500 !important;
         }
 
-        /* 6. Right side (button) */
+        /* 6. Right side widgets (Divider + Cart + Social + Button) */
+        .elementor-element-b847975 {
+          display: flex !important;
+          align-items: center !important;
+          flex-shrink: 0 !important;
+          margin: 0 10px !important;
+        }
+        .elementor-element-79ba4d8 {
+          display: flex !important;
+          align-items: center !important;
+          flex-shrink: 0 !important;
+          margin: 0 10px !important;
+        }
+        .pt-cart-link {
+          display: flex !important;
+          align-items: center !important;
+          text-decoration: none !important;
+          position: relative !important;
+        }
+        .pt-cart-count {
+          background-color: #ff5500 !important;
+          color: #ffffff !important;
+          font-size: 10px !important;
+          font-weight: bold !important;
+          border-radius: 50% !important;
+          width: 16px !important;
+          height: 16px !important;
+          display: inline-flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          position: absolute !important;
+          top: -8px !important;
+          right: -8px !important;
+        }
+        .pt-cart-link::before {
+          content: "\e900" !important;
+          font-family: 'pticons' !important;
+          font-size: 20px !important;
+          color: #ffffff !important;
+        }
+        .elementor-element-34198cc {
+          display: flex !important;
+          align-items: center !important;
+          flex-shrink: 0 !important;
+          margin: 0 10px !important;
+        }
+        .elementor-social-icons-wrapper {
+          display: flex !important;
+          flex-direction: row !important;
+          flex-wrap: nowrap !important;
+          align-items: center !important;
+          gap: 10px !important;
+        }
+        .elementor-social-icon {
+          width: 28px !important;
+          height: 28px !important;
+          display: inline-flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          font-size: 18px !important;
+          color: #ffffff !important;
+        }
         .elementor-element-2273d97 {
           display: flex !important;
           align-items: center !important;
@@ -404,8 +469,18 @@
           margin-right: 0 !important;
         }
         .elementor-element-2273d97 .pt-button {
-          padding: 10px 20px !important; /* button padding 10px 20px */
-          font-size: 13px !important; /* button font-size 13px */
+          padding: 10px 22px !important;
+          font-size: 13px !important;
+          border: 1px solid #ff5500 !important;
+          color: #ffffff !important;
+          background-color: transparent !important;
+          border-radius: 4px !important;
+          text-transform: capitalize !important;
+          font-weight: 700 !important;
+        }
+        .elementor-element-2273d97 .pt-button:hover {
+          background-color: #ff5500 !important;
+          color: #ffffff !important;
         }
 
         @media (max-width: 1200px) {
@@ -432,29 +507,23 @@
             <div class="elementor-element elementor-element-e9d8a92 elementor-icon-list--layout-inline elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="e9d8a92" data-element_type="widget" data-widget_type="icon-list.default">
               <div class="elementor-widget-container">
                 <link rel="stylesheet" href="css/widget-icon-list.min.css" />
-                <ul class="elementor-icon-list-items elementor-inline-items">
-                  <li class="elementor-icon-list-item elementor-inline-item">
+                <ul class="elementor-icon-list-items elementor-inline-items" style="display: flex !important; justify-content: space-between !important; width: 100% !important; align-items: center !important;">
+                  <li class="elementor-icon-list-item elementor-inline-item" style="display: flex !important; align-items: center !important; gap: 6px !important;">
                     <span class="elementor-icon-list-icon">                    <i aria-hidden="true" class="pticon pticon-location"></i>
 </span>
-                    <span class="elementor-icon-list-text">                    DSS – 230, HUDA Market, Sector – 46, Gurugram, Haryana 122003
+                    <span class="elementor-icon-list-text" style="color: #ffffff !important; font-size: 12px !important; font-family: 'Inter', sans-serif !important;">                    DSS – 230, HUDA Market, Sector – 46, Gurugram, Haryana 122003
 </span>
                   </li>
-                  <li class="elementor-icon-list-item elementor-inline-item">
+                  <li class="elementor-icon-list-item elementor-inline-item" style="display: flex !important; align-items: center !important; gap: 6px !important;">
                     <span class="elementor-icon-list-icon">                    <i aria-hidden="true" class="pticon pticon-envelope"></i>
 </span>
-                    <span class="elementor-icon-list-text">                    <a href="mailto:info@ravigas.in">info@ravigas.in</a>
+                    <span class="elementor-icon-list-text" style="font-size: 12px !important; font-family: 'Inter', sans-serif !important;">                    <a href="mailto:info@ravigas.in" style="color: #ffffff !important; text-decoration: none !important;">info@ravigas.in</a>
 </span>
                   </li>
-                </ul>
-              </div>
-            </div>
-            <div class="elementor-element elementor-element-4c6f085 elementor-icon-list--layout-inline elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="4c6f085" data-element_type="widget" data-widget_type="icon-list.default">
-              <div class="elementor-widget-container">
-                <ul class="elementor-icon-list-items elementor-inline-items">
-                  <li class="elementor-icon-list-item elementor-inline-item">
+                  <li class="elementor-icon-list-item elementor-inline-item" style="display: flex !important; align-items: center !important; gap: 6px !important;">
                     <span class="elementor-icon-list-icon">                    <i aria-hidden="true" class="pticon pticon-phone"></i>
 </span>
-                    <span class="elementor-icon-list-text">                    09868251750, 09205123928
+                    <span class="elementor-icon-list-text" style="color: #ffffff !important; font-size: 12px !important; font-family: 'Inter', sans-serif !important;">                    09868251750, 09205123928
 </span>
                   </li>
                 </ul>
@@ -511,6 +580,9 @@
                         <li id="menu-item-safety" class="menu-item">
                           <a href="safety.html">Safety</a>
                         </li>
+                        <li id="menu-item-contact" class="menu-item">
+                          <a href="contact.html">Contact Us</a>
+                        </li>
                       </ul>
                     </nav>
                     <div class="menu-toggle">
@@ -522,8 +594,60 @@
                   </div>
                 </div>
               </div>
-              <!-- Social Icons and Divider removed -->
-              <!-- Cart icon removed -->
+              <!-- Divider widget -->
+              <div class="elementor-element elementor-element-b847975 elementor-widget__width-initial elementor-hidden-tablet elementor-hidden-mobile elementor-widget-divider--view-line elementor-widget elementor-widget-divider" data-id="b847975" data-element_type="widget" data-widget_type="divider.default">
+                <div class="elementor-widget-container">
+                  <div class="elementor-divider">
+                    <span class="elementor-divider-separator"></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Cart widget -->
+              <div class="elementor-element elementor-element-79ba4d8 elementor-hidden-tablet elementor-hidden-mobile elementor-widget elementor-widget-pt-cart" data-id="79ba4d8" data-element_type="widget" data-widget_type="pt-cart.default">
+                <div class="elementor-widget-container">
+                  <div class="pt-cart">
+                    <a class="pt-cart-link" href="/cart/">
+                      <div class="pt-cart-text"></div>
+                      <div class="pt-cart-count">0</div>
+                    </a>
+                    <div class="pt-cart-minicart">
+                      <div class="widget woocommerce widget_shopping_cart">
+                        <h2 class="widgettitle">Cart</h2>
+                        <div class="widget_shopping_cart_content"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Social Icons widget -->
+              <div class="elementor-element elementor-element-34198cc elementor-shape-square elementor-hidden-tablet elementor-hidden-mobile elementor-grid-0 e-grid-align-center elementor-widget elementor-widget-social-icons" data-id="34198cc" data-element_type="widget" data-widget_type="social-icons.default">
+                <div class="elementor-widget-container">
+                  <div class="elementor-social-icons-wrapper elementor-grid">
+                    <span class="elementor-grid-item">
+                      <a class="elementor-icon elementor-social-icon elementor-social-icon-pticon-twitter elementor-repeater-item-5bbbd90" href="https://twitter.com/ravigasgurugram" target="_blank">
+                        <span class="elementor-screen-only">Pticon-twitter</span>
+                        <i class="pticon pticon-twitter"></i>
+                      </a>
+                    </span>
+                    <span class="elementor-grid-item">
+                      <a class="elementor-icon elementor-social-icon elementor-social-icon-facebook elementor-repeater-item-d09db37" href="https://www.facebook.com/ravigasservice" target="_blank">
+                        <span class="elementor-screen-only">Facebook</span>
+                        <svg class="e-font-icon-svg e-fab-facebook" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path>
+                        </svg>
+                      </a>
+                    </span>
+                    <span class="elementor-grid-item">
+                      <a class="elementor-icon elementor-social-icon elementor-social-icon-pticon-instagram elementor-repeater-item-ca2b9c8" href="https://www.instagram.com/ravigasservice/" target="_blank">
+                        <span class="elementor-screen-only">Pticon-instagram</span>
+                        <i class="pticon pticon-instagram"></i>
+                      </a>
+                    </span>
+                  </div>
+                </div>
+              </div>
               <div class="elementor-element elementor-element-2273d97 elementor-hidden-tablet elementor-hidden-mobile elementor-widget elementor-widget-pt-button" data-id="2273d97" data-element_type="widget" data-widget_type="pt-button.default">
                 <div class="elementor-widget-container">
                   <a class="pt-button outlined " href="contact.html">                  <span>                  Contact us
