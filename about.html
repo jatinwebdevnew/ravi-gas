@@ -494,50 +494,61 @@
         }
       }
 
-      /* FIX LEFT SIDE CUTOFF */
-      html, body {
+      /* STRONG FIX - LEFT SIDE CUTOFF */
+      html {
         overflow-x: hidden !important;
-        max-width: 100% !important;
       }
 
-      * {
+      body {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+        position: relative !important;
+      }
+
+      *, *::before, *::after {
         box-sizing: border-box !important;
       }
 
+      .elementor,
+      .elementor-section-wrap,
       .elementor-section,
       .elementor-container,
       .e-con,
       .e-con-inner,
+      .elementor-row,
+      .elementor-column,
+      .elementor-column-wrap,
       .elementor-widget-wrap,
-      .elementor-column-wrap {
+      .elementor-widget,
+      .elementor-widget-container {
         max-width: 100% !important;
-        overflow: visible !important;
+        overflow-x: hidden !important;
       }
 
-      .elementor-element.elementor-element-1cbc7fc,
-      .elementor-element.elementor-element-846147b,
-      .elementor-element.elementor-element-af47230 {
-        --padding-inline-start: 20px !important;
-        --padding-inline-end: 20px !important;
+      [class*="elementor-element"] {
+        --padding-inline-start: 15px !important;
+        --padding-inline-end: 15px !important;
+        min-width: 0 !important;
       }
 
       @media (max-width: 767px) {
-        .elementor-element {
-          --padding-inline-start: 15px !important;
-          --padding-inline-end: 15px !important;
-        }
-        
-        .e-con, .e-con-inner {
+        .e-con {
           padding-left: 15px !important;
           padding-right: 15px !important;
+          width: 100% !important;
+        }
+
+        section, div, article {
+          max-width: 100vw !important;
+          overflow-x: hidden !important;
         }
       }
 
-      @media (min-width: 768px) and (max-width: 1024px) {
-        .elementor-element.elementor-element-1cbc7fc,
-        .elementor-element.elementor-element-846147b {
-          --padding-inline-start: 20px !important;
-          --padding-inline-end: 20px !important;
+      @media (min-width: 768px) {
+        [class*="elementor-element"] {
+          --padding-inline-start: 30px !important;
+          --padding-inline-end: 30px !important;
         }
       }
     </style>
