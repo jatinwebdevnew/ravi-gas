@@ -227,6 +227,215 @@
       :root{--pt-color-primary:#000000;}:root{--pt-color-secondary:#000000;}:root{--pt-color-text:#000000;}:root{--pt-color-accent:#EC6C06;}:root{--pt-color-bg:#FCFCFC;}:root{--pt-font-primary:Thunder;}:root{--pt-font-secondary:Thunder;}:root{--pt-font-text:Lato;}:root{--pt-font-accent:Thunder;}:root{--pt-typography-body-font-family: Lato,Arial, Helvetica, sans-serif;--pt-typography-body-font-weight: 400;--pt-typography-body-font-size: 16px;}@media (max-width: 1024px) { :root { --pt-typography-body-font-size: 16px; } }@media (max-width: 767px) { :root { --pt-typography-body-font-size: 16px; } }:root{--pt-typography-h1-font-family: Thunder,Arial, Helvetica, sans-serif;--pt-typography-h1-font-weight: 700;--pt-typography-h1-font-size: 64px;}@media (max-width: 1024px) { :root { --pt-typography-h1-font-size: 42px; } }@media (max-width: 767px) { :root { --pt-typography-h1-font-size: 32px; } }:root{--pt-typography-h2-font-family: Thunder,Arial, Helvetica, sans-serif;--pt-typography-h2-font-weight: 700;--pt-typography-h2-font-size: 48px;}@media (max-width: 1024px) { :root { --pt-typography-h2-font-size: 36px; } }@media (max-width: 767px) { :root { --pt-typography-h2-font-size: 30px; } }:root{--pt-typography-h3-font-family: Thunder,Arial, Helvetica, sans-serif;--pt-typography-h3-font-weight: 700;--pt-typography-h3-font-size: 32px;}@media (max-width: 1024px) { :root { --pt-typography-h3-font-size: 30px; } }@media (max-width: 767px) { :root { --pt-typography-h3-font-size: 28px; } }:root{--pt-typography-h4-font-family: Thunder,Arial, Helvetica, sans-serif;--pt-typography-h4-font-weight: 700;--pt-typography-h4-font-size: 28px;}@media (max-width: 1024px) { :root { --pt-typography-h4-font-size: 24px; } }@media (max-width: 767px) { :root { --pt-typography-h4-font-size: 22px; } }:root{--pt-typography-h5-font-family: Thunder,Arial, Helvetica, sans-serif;--pt-typography-h5-font-weight: 700;--pt-typography-h5-font-size: 22px;}@media (max-width: 1024px) { :root { --pt-typography-h5-font-size: 20px; } }@media (max-width: 767px) { :root { --pt-typography-h5-font-size: 18px; } }:root{--pt-typography-h6-font-family: Thunder,Arial, Helvetica, sans-serif;--pt-typography-h6-font-weight: 700;--pt-typography-h6-font-size: 20px;}@media (max-width: 1024px) { :root { --pt-typography-h6-font-size: 18px; } }@media (max-width: 767px) { :root { --pt-typography-h6-font-size: 16px; } }
     </style>
     <link rel="stylesheet" id="elementor-post-71-css" href="css/post-71.css" media="all" />
+    <style id="about-responsiveness-css">
+      /* Universal rules to prevent horizontal overflow */
+      html, body {
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+        width: 100% !important;
+      }
+
+      /* Desktop (above 1200px) */
+      @media (min-width: 1201px) {
+        .e-con-inner {
+          max-width: 1200px !important;
+          margin: 0 auto !important;
+        }
+      }
+
+      /* Tablet Landscape (1024px - 1200px) */
+      @media (min-width: 1024px) and (max-width: 1200px) {
+        h1, .pt-heading-title.h1 {
+          font-size: 90px !important;
+        }
+        h2, .pt-heading-title {
+          font-size: 48px !important;
+        }
+        h3 {
+          font-size: 24px !important;
+        }
+        .site-menu-inner > li > a {
+          font-size: 13px !important;
+          padding: 0 10px !important;
+        }
+      }
+
+      /* Tablet Portrait (768px - 1024px) */
+      @media (max-width: 1023px) {
+        /* Header responsiveness */
+        .elementor-hidden-tablet, 
+        .elementor-hidden-mobile {
+          display: none !important;
+        }
+        .site-menu-wrap nav.site-menu {
+          display: none !important;
+        }
+        .site-menu-wrap .menu-toggle {
+          display: flex !important;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+        }
+        
+        /* Reduce header paddings so header is compact on tablets */
+        .elementor-element-846147b {
+          padding-block-start: 10px !important;
+          padding-block-end: 10px !important;
+          padding-inline-start: 15px !important;
+          padding-inline-end: 15px !important;
+        }
+        
+        /* Banner Font Size scaling down */
+        h1, .pt-heading-title.h1 {
+          font-size: 70px !important;
+        }
+        h2, .pt-heading-title {
+          font-size: 38px !important;
+        }
+        h3 {
+          font-size: 22px !important;
+        }
+
+        /* Welcome Section responsive */
+        .about-welcome-section {
+          padding: 60px 0 !important;
+        }
+
+        /* Management section: image and text stack vertically */
+        .management-container {
+          flex-direction: column !important;
+          align-items: center !important;
+          text-align: center !important;
+          gap: 20px !important;
+        }
+        .management-container > div {
+          max-width: 100% !important;
+          flex: 1 1 100% !important;
+          text-align: center !important;
+        }
+        .management-container p {
+          text-align: center !important;
+        }
+
+        /* Mission/Vision/Principle cards: 2 columns */
+        .cards-grid {
+          grid-template-columns: repeat(2, 1fr) !important;
+        }
+      }
+
+      /* Mobile (480px - 768px) */
+      @media (max-width: 767px) {
+        /* General layout single column stack */
+        .about-welcome-section,
+        .about-rates-section,
+        .about-management-section,
+        .about-cards-section {
+          padding: 50px 15px !important;
+        }
+
+        /* Stacking all containers to single column */
+        .management-container,
+        .cards-grid,
+        .about-split-layout {
+          flex-direction: column !important;
+          display: flex !important;
+          grid-template-columns: 1fr !important;
+          gap: 25px !important;
+        }
+
+        /* Stacking footer columns */
+        .elementor-element-28e4811,
+        .elementor-element-48c227,
+        .elementor-element-dd32cc3 {
+          flex-direction: column !important;
+          align-items: flex-start !important;
+          gap: 20px !important;
+          margin-block-end: 30px !important;
+        }
+        .elementor-element-bdf5d34,
+        .elementor-element-6d5fc82,
+        .elementor-element-d3ef610,
+        .elementor-element-55016c,
+        .elementor-element-9264e7f {
+          width: 100% !important;
+          max-width: 100% !important;
+          border-left: none !important;
+          padding-inline-start: 0 !important;
+        }
+        .elementor-element-12924d1 {
+          text-align: left !important;
+        }
+
+        /* Font sizes scaling down */
+        h1, .pt-heading-title.h1 {
+          font-size: 32px !important;
+        }
+        h2, .pt-heading-title {
+          font-size: 24px !important;
+        }
+        h3 {
+          font-size: 18px !important;
+        }
+        body, p, td, th, .elementor-widget-container p {
+          font-size: 14px !important;
+          line-height: 1.6 !important;
+        }
+
+        /* Images: width 100%, height auto */
+        img {
+          max-width: 100% !important;
+          height: auto !important;
+          width: 100% !important;
+        }
+
+        /* Cards adjustments for full-width, vertical stack */
+        .partner-card-custom {
+          width: 100% !important;
+          padding: 30px 20px !important;
+          box-sizing: border-box !important;
+        }
+
+        /* Touch target improvements */
+        a, button, .menu-toggle, .pt-button, .submenu-toggle {
+          min-width: 44px !important;
+          min-height: 44px !important;
+          display: inline-flex !important;
+          align-items: center !important;
+        }
+      }
+
+      /* Mobile Small (below 480px) */
+      @media (max-width: 479px) {
+        h1, .pt-heading-title.h1 {
+          font-size: 26px !important;
+        }
+        h2, .pt-heading-title {
+          font-size: 20px !important;
+        }
+        body, p, td, th, .elementor-widget-container p {
+          font-size: 13px !important;
+        }
+        
+        /* Buttons: full width, 44px min height */
+        .pt-button, .button, button, input[type="submit"], a.pt-button {
+          width: 100% !important;
+          min-height: 44px !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          box-sizing: border-box !important;
+        }
+
+        /* Header Logo size reduction */
+        .site-logo span {
+          font-size: 18px !important;
+          white-space: normal !important;
+        }
+        .site-logo img {
+          max-height: 40px !important;
+        }
+      }
+    </style>
     <link rel="stylesheet" id="elementor-post-88-css" href="css/post-88.css" media="all" />
   </head>
   <body class="home wp-singular page-template-default page page-id-34 wp-theme-fuelgize theme-fuelgize chrome windows woocommerce-no-js no-js right-click-disable-false loading elementor-default elementor-kit-19 elementor-page elementor-page-34">
@@ -572,7 +781,7 @@
           <div data-elementor-type="wp-page" class="elementor elementor-34">
             
             <!-- Banner / Hero Section -->
-            <div class="elementor-element e-flex e-con-boxed e-con e-parent" style="position: relative; height: 350px; background-image: url('images/ravigas-1.jpg'); background-position: center; background-size: cover; display: flex; align-items: center; justify-content: center; margin-bottom: 0;">
+            <div class="elementor-element e-flex e-con-boxed e-con e-parent about-banner-section" style="position: relative; height: 350px; background-image: url('images/ravigas-1.jpg'); background-position: center; background-size: cover; display: flex; align-items: center; justify-content: center; margin-bottom: 0;">
               <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(8, 8, 8, 0.7); z-index: 1;"></div>
               <div class="pt-heading text-align-center" style="position: relative; z-index: 2; text-align: center;">
                 <p class="pt-heading-subtitle" style="color: #ffffff !important; margin-bottom: 10px;">
@@ -583,7 +792,7 @@
             </div>
 
             <!-- Welcome To Ravi Gas Service Section -->
-            <div class="elementor-element e-flex e-con-boxed e-con e-parent" style="padding: 100px 0; background-color: #fcfcfc;">
+            <div class="elementor-element e-flex e-con-boxed e-con e-parent about-welcome-section" style="padding: 100px 0; background-color: #fcfcfc;">
               <div class="e-con-inner" style="max-width: 1200px; margin: 0 auto; padding: 0 15px;">
                 <div style="display: flex; flex-direction: column; gap: 35px; align-items: center; text-align: center; max-width: 900px; margin: 0 auto;">
                   <div class="pt-heading text-align-center">
@@ -607,7 +816,7 @@
             </div>
 
             <!-- LPG Rates Section -->
-            <div class="elementor-element e-flex e-con-boxed e-con e-parent" style="padding: 100px 0; background-color: #242424; background-image: url('images/fuelgize-11.webp'); background-position: top left; background-size: 1680px auto; color: #ffffff;">
+            <div class="elementor-element e-flex e-con-boxed e-con e-parent about-rates-section" style="padding: 100px 0; background-color: #242424; background-image: url('images/fuelgize-11.webp'); background-position: top left; background-size: 1680px auto; color: #ffffff;">
               <div class="e-con-inner" style="max-width: 1200px; margin: 0 auto; padding: 0 15px; width: 100%;">
                 <div class="pt-heading text-align-center" style="margin-bottom: 50px; text-align: center;">
                   <p class="pt-heading-subtitle" style="color: #ffffff !important;">
@@ -622,74 +831,78 @@
                   <!-- Domestic Table -->
                   <div style="flex: 1 1 450px; max-width: 550px; background: #1e1e1e; padding: 40px 30px; border-radius: 8px; border: 1px solid #333; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
                     <h3 style="font-family: 'Thunder', sans-serif; font-size: 28px; font-weight: 700; color: #ff5500; margin-bottom: 25px; text-transform: uppercase; border-bottom: 2px solid #ff5500; padding-bottom: 10px; letter-spacing: 1px;">Domestic LPG Rates</h3>
-                    <table style="width: 100%; border-collapse: collapse; text-align: left; font-family: 'Inter', sans-serif;">
-                      <thead>
-                        <tr style="border-bottom: 1px solid #444; color: #ffffff99; font-weight: 600; font-size: 14px; text-transform: uppercase;">
-                          <th style="padding: 12px 10px; letter-spacing: 0.5px;">Weight (Kg)</th>
-                          <th style="padding: 12px 10px; text-align: right; letter-spacing: 0.5px;">Price (INR)</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr style="border-bottom: 1px solid #2a2a2a;">
-                          <td style="padding: 16px 10px; color: #ffffffcc;">14.2 Kg Cylinder</td>
-                          <td style="padding: 16px 10px; text-align: right; font-weight: 600; color: #ffffff; font-size: 16px;">861.50</td>
-                        </tr>
-                        <tr style="border-bottom: none;">
-                          <td style="padding: 16px 10px; color: #ffffffcc;">10 Kg Cylinder</td>
-                          <td style="padding: 16px 10px; text-align: right; font-weight: 600; color: #ffffff; font-size: 16px;">620.00</td>
-                        </tr>
-                      </tbody>
-                    </table>
+                    <div class="lpg-table-wrapper" style="width: 100%; overflow-x: auto;">
+                      <table style="width: 100%; border-collapse: collapse; text-align: left; font-family: 'Inter', sans-serif;">
+                        <thead>
+                          <tr style="border-bottom: 1px solid #444; color: #ffffff99; font-weight: 600; font-size: 14px; text-transform: uppercase;">
+                            <th style="padding: 12px 10px; letter-spacing: 0.5px;">Weight (Kg)</th>
+                            <th style="padding: 12px 10px; text-align: right; letter-spacing: 0.5px;">Price (INR)</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr style="border-bottom: 1px solid #2a2a2a;">
+                            <td style="padding: 16px 10px; color: #ffffffcc;">14.2 Kg Cylinder</td>
+                            <td style="padding: 16px 10px; text-align: right; font-weight: 600; color: #ffffff; font-size: 16px;">861.50</td>
+                          </tr>
+                          <tr style="border-bottom: none;">
+                            <td style="padding: 16px 10px; color: #ffffffcc;">10 Kg Cylinder</td>
+                            <td style="padding: 16px 10px; text-align: right; font-weight: 600; color: #ffffff; font-size: 16px;">620.00</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                   
                   <!-- Non-Domestic Table -->
                   <div style="flex: 1 1 450px; max-width: 550px; background: #1e1e1e; padding: 40px 30px; border-radius: 8px; border: 1px solid #333; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
                     <h3 style="font-family: 'Thunder', sans-serif; font-size: 28px; font-weight: 700; color: #ff5500; margin-bottom: 25px; text-transform: uppercase; border-bottom: 2px solid #ff5500; padding-bottom: 10px; letter-spacing: 1px;">Non-Domestic / Commercial LPG Rates</h3>
-                    <table style="width: 100%; border-collapse: collapse; text-align: left; font-family: 'Inter', sans-serif;">
-                      <thead>
-                        <tr style="border-bottom: 1px solid #444; color: #ffffff99; font-weight: 600; font-size: 14px; text-transform: uppercase;">
-                          <th style="padding: 12px 10px; letter-spacing: 0.5px;">Weight (Kg) / Type</th>
-                          <th style="padding: 12px 10px; text-align: right; letter-spacing: 0.5px;">Price (INR)</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr style="border-bottom: 1px solid #2a2a2a;">
-                          <td style="padding: 14px 10px; color: #ffffffcc;">19 Kg Cylinder</td>
-                          <td style="padding: 14px 10px; text-align: right; font-weight: 600; color: #ffffff; font-size: 16px;">1,765.00</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #2a2a2a;">
-                          <td style="padding: 14px 10px; color: #ffffffcc;">5 Kg FTL Cyl - New Connection</td>
-                          <td style="padding: 14px 10px; text-align: right; font-weight: 600; color: #ffffff; font-size: 16px;">1,471.00</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #2a2a2a;">
-                          <td style="padding: 14px 10px; color: #ffffffcc;">5 Kg FTL Cyl - Refill</td>
-                          <td style="padding: 14px 10px; text-align: right; font-weight: 600; color: #ffffff; font-size: 16px;">527.00</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #2a2a2a;">
-                          <td style="padding: 14px 10px; color: #ffffffcc;">5 Kg FTL POS Cyl - New Connection</td>
-                          <td style="padding: 14px 10px; text-align: right; font-weight: 600; color: #ffffff; font-size: 16px;">NA</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #2a2a2a;">
-                          <td style="padding: 14px 10px; color: #ffffffcc;">5 Kg FTL POS Cyl - Refill</td>
-                          <td style="padding: 14px 10px; text-align: right; font-weight: 600; color: #ffffff; font-size: 16px;">NA</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #2a2a2a;">
-                          <td style="padding: 14px 10px; color: #ffffffcc;">47.5 Kg Cylinder</td>
-                          <td style="padding: 14px 10px; text-align: right; font-weight: 600; color: #ffffff; font-size: 16px;">4,408.00</td>
-                        </tr>
-                        <tr style="border-bottom: none;">
-                          <td style="padding: 14px 10px; color: #ffffffcc;">19 Kg BMCG</td>
-                          <td style="padding: 14px 10px; text-align: right; font-weight: 600; color: #ffffff; font-size: 16px;">2,204.00</td>
-                        </tr>
-                      </tbody>
-                    </table>
+                    <div class="lpg-table-wrapper" style="width: 100%; overflow-x: auto;">
+                      <table style="width: 100%; border-collapse: collapse; text-align: left; font-family: 'Inter', sans-serif;">
+                        <thead>
+                          <tr style="border-bottom: 1px solid #444; color: #ffffff99; font-weight: 600; font-size: 14px; text-transform: uppercase;">
+                            <th style="padding: 12px 10px; letter-spacing: 0.5px;">Weight (Kg) / Type</th>
+                            <th style="padding: 12px 10px; text-align: right; letter-spacing: 0.5px;">Price (INR)</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr style="border-bottom: 1px solid #2a2a2a;">
+                            <td style="padding: 14px 10px; color: #ffffffcc;">19 Kg Cylinder</td>
+                            <td style="padding: 14px 10px; text-align: right; font-weight: 600; color: #ffffff; font-size: 16px;">1,765.00</td>
+                          </tr>
+                          <tr style="border-bottom: 1px solid #2a2a2a;">
+                            <td style="padding: 14px 10px; color: #ffffffcc;">5 Kg FTL Cyl - New Connection</td>
+                            <td style="padding: 14px 10px; text-align: right; font-weight: 600; color: #ffffff; font-size: 16px;">1,471.00</td>
+                          </tr>
+                          <tr style="border-bottom: 1px solid #2a2a2a;">
+                            <td style="padding: 14px 10px; color: #ffffffcc;">5 Kg FTL Cyl - Refill</td>
+                            <td style="padding: 14px 10px; text-align: right; font-weight: 600; color: #ffffff; font-size: 16px;">527.00</td>
+                          </tr>
+                          <tr style="border-bottom: 1px solid #2a2a2a;">
+                            <td style="padding: 14px 10px; color: #ffffffcc;">5 Kg FTL POS Cyl - New Connection</td>
+                            <td style="padding: 14px 10px; text-align: right; font-weight: 600; color: #ffffff; font-size: 16px;">NA</td>
+                          </tr>
+                          <tr style="border-bottom: 1px solid #2a2a2a;">
+                            <td style="padding: 14px 10px; color: #ffffffcc;">5 Kg FTL POS Cyl - Refill</td>
+                            <td style="padding: 14px 10px; text-align: right; font-weight: 600; color: #ffffff; font-size: 16px;">NA</td>
+                          </tr>
+                          <tr style="border-bottom: 1px solid #2a2a2a;">
+                            <td style="padding: 14px 10px; color: #ffffffcc;">47.5 Kg Cylinder</td>
+                            <td style="padding: 14px 10px; text-align: right; font-weight: 600; color: #ffffff; font-size: 16px;">4,408.00</td>
+                          </tr>
+                          <tr style="border-bottom: none;">
+                            <td style="padding: 14px 10px; color: #ffffffcc;">19 Kg BMCG</td>
+                            <td style="padding: 14px 10px; text-align: right; font-weight: 600; color: #ffffff; font-size: 16px;">2,204.00</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
             <!-- About Management Section (Exactly matching index.html style) -->
-            <div class="elementor-element elementor-element-38ecc42 e-flex e-con-boxed e-con e-parent" data-id="38ecc42" data-element_type="container" data-settings="{&#34;background_background&#34;:&#34;classic&#34;,&#34;content_width&#34;:&#34;boxed&#34;}" data-core-v316-plus="true" style="padding: 100px 0; background-color: #242424; background-image: url('images/fuelgize-11.webp'); background-position: top left; background-size: 1680px auto;">
+            <div class="elementor-element elementor-element-38ecc42 e-flex e-con-boxed e-con e-parent about-management-section" data-id="38ecc42" data-element_type="container" data-settings="{&#34;background_background&#34;:&#34;classic&#34;,&#34;content_width&#34;:&#34;boxed&#34;}" data-core-v316-plus="true" style="padding: 100px 0; background-color: #242424; background-image: url('images/fuelgize-11.webp'); background-position: top left; background-size: 1680px auto;">
               <div class="e-con-inner" style="max-width: 1200px; margin: 0 auto; padding: 0 15px; width: 100%;">
                 <div class="elementor-element elementor-widget" style="width: 100%; margin-bottom: 60px;">
                   <div class="pt-heading text-align-center" style="margin-bottom: 40px; text-align: center;">
@@ -702,7 +915,7 @@
                   </div>
                 </div>
 
-                <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center; justify-content: center; width: 100%;">
+                <div class="management-container" style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center; justify-content: center; width: 100%;">
                   <div style="flex: 1 1 300px; max-width: 320px; text-align: center;">
                     <img src="images/721be3e9-cf48-4cc4-b60d-6eaf9be5179c.jpg" alt="Mr. Ravindra Singh" style="width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 2px solid #ff5500;" />
                   </div>
@@ -716,9 +929,9 @@
             </div>
 
             <!-- Mission, Vision, Principle Section -->
-            <div class="elementor-element e-flex e-con-boxed e-con e-parent" style="padding: 100px 0; background-color: #fcfcfc;">
+            <div class="elementor-element e-flex e-con-boxed e-con e-parent about-cards-section" style="padding: 100px 0; background-color: #fcfcfc;">
               <div class="e-con-inner" style="max-width: 1200px; margin: 0 auto; padding: 0 15px; width: 100%;">
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; width: 100%;">
+                <div class="cards-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; width: 100%;">
                   <!-- Mission Card -->
                   <div class="partner-card-custom" style="padding: 50px 30px;">
                     <div style="font-size: 50px; color: #ff5500; margin-bottom: 25px;"><i class="fa fa-bullseye"></i></div>
