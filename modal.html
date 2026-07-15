@@ -110,16 +110,13 @@
         var popup = document.getElementById('home-popup');
         var closeBtn = document.getElementById('close-popup-btn');
     
-        // Check if popup has already been shown in this session
-        if (!sessionStorage.getItem('homePopupShown')) {
-          setTimeout(function() {
-            popup.classList.add('active');
-          }, 1500); // 1.5 seconds delay
-        }
+        // Show on every page load
+        setTimeout(function() {
+          popup.classList.add('active');
+        }, 1500); // 1.5 seconds delay
     
         function closePopup() {
           popup.classList.remove('active');
-          sessionStorage.setItem('homePopupShown', 'true');
         }
     
         closeBtn.addEventListener('click', closePopup);
