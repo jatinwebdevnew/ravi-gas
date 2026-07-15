@@ -2362,7 +2362,7 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
       <div class="custom-popup-modal">
         <button class="custom-popup-close" id="close-popup-btn">×</button>
         <img src="pop-up.jpg" alt="New Gas Connection" class="custom-popup-image">
-        <a href="contact.html" class="custom-popup-btn">Get A New Connection</a>
+        <a href="get-new-connection.html" class="custom-popup-btn">Get A New Connection</a>
       </div>
     </div>
     
@@ -2371,16 +2371,13 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
         var popup = document.getElementById('home-popup');
         var closeBtn = document.getElementById('close-popup-btn');
     
-        // Check if popup has already been shown in this session
-        if (!sessionStorage.getItem('homePopupShown')) {
-          setTimeout(function() {
-            popup.classList.add('active');
-          }, 1500); // 1.5 seconds delay
-        }
+        // Show on every page load
+        setTimeout(function() {
+          popup.classList.add('active');
+        }, 1500); // 1.5 seconds delay
     
         function closePopup() {
           popup.classList.remove('active');
-          sessionStorage.setItem('homePopupShown', 'true');
         }
     
         closeBtn.addEventListener('click', closePopup);
