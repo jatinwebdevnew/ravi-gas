@@ -1,4 +1,4 @@
-@font-face {
+/* @font-face {
   font-family: 'popup-icon';
   src: url('fonts/popup-icon.eot?ss345j');
   src: url('fonts/popup-icon.eot?ss345j#iefix') format('embedded-opentype'),
@@ -8,7 +8,7 @@
   font-weight: normal;
   font-style: normal;
   font-display: block;
-}
+} */
 
 [class^="popup-icon-"],
 [class*=" popup-icon-"] {

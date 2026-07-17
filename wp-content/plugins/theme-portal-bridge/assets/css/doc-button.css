@@ -1,0 +1,191 @@
+/* doc-button.css — self-contained styles for the floating documentation CTA.
+   Pure CSS: all states (hover, entrance, attention pulse, FAB expand, card
+   reveal) work without JS so the button is robust on any WordPress theme.
+   Everything is namespaced .db-* and driven by CSS variables. */
+
+.db-dock {
+  --db-font: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --db-h: 54px;
+  --db-r: 999px;
+  --db-accent: oklch(0.55 0.21 274);
+  --_sh1: color-mix(in oklab, var(--db-accent) 42%, transparent);
+  --_sh2: rgba(15, 23, 42, .16);
+  --_ring: color-mix(in oklab, var(--db-accent) 22%, transparent);
+  position: fixed;
+  z-index: 2147483000;
+  font-family: var(--db-font);
+}
+.db-dock[data-pos="br"] { right: max(22px, env(safe-area-inset-right)); bottom: max(22px, env(safe-area-inset-bottom)); }
+.db-dock[data-pos="bl"] { left: max(22px, env(safe-area-inset-left)); bottom: max(22px, env(safe-area-inset-bottom)); }
+
+/* ---- shared button surface ------------------------------------------- */
+.db-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: .55em;
+  height: var(--db-h);
+  padding: 0 1.25em 0 1.05em;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: calc(var(--db-h) * .31);
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: .005em;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+  background: var(--db-accent);
+  border-radius: var(--db-r);
+  box-shadow:
+    0 6px 18px var(--_sh1),
+    0 2px 6px var(--_sh2),
+    inset 0 1px 0 rgba(255, 255, 255, .18),
+    0 0 0 1px var(--_ring);
+  transition: transform .42s cubic-bezier(.34, 1.56, .64, 1), box-shadow .25s ease;
+}
+.db-btn:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 12px 30px var(--_sh1),
+    0 4px 10px var(--_sh2),
+    inset 0 1px 0 rgba(255, 255, 255, .18),
+    0 0 0 1px var(--_ring);
+}
+.db-btn:active { transform: translateY(-1px); }
+.db-btn:focus-visible { outline: 3px solid var(--_ring); outline-offset: 3px; }
+
+/* icons (scale with button size via em) */
+.db-ico { display: inline-flex; flex: none; transition: transform .3s ease; }
+.db-ico svg { width: 1.2em; height: 1.2em; display: block; }
+.db-btn:hover .db-ico-lead { transform: rotate(-6deg); }
+.db-arr { display: inline-flex; flex: none; opacity: .85; margin-left: .05em; transition: transform .3s ease; }
+.db-arr svg { width: .95em; height: .95em; display: block; }
+.db-btn:hover .db-arr { transform: translateX(3px); }
+.db-label { display: inline-block; }
+
+/* ---- entrance (CSS only; base state is the VISIBLE state) ------------ */
+.db-dock[data-motion="bold"] .db-anim,
+.db-dock[data-motion="subtle"] .db-anim {
+  animation: dbIn .55s cubic-bezier(.34, 1.56, .64, 1) .35s backwards;
+}
+@keyframes dbIn {
+  from { opacity: 0; transform: translateY(22px) scale(.94); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ---- attention pulse ring (bold only) -------------------------------- */
+.db-pulse { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; }
+.db-dock[data-motion="bold"] .db-pulse { animation: dbPulse 5.5s cubic-bezier(.2, .6, .3, 1) 1.6s infinite; }
+@keyframes dbPulse {
+  0%   { box-shadow: 0 0 0 0 color-mix(in oklab, var(--db-accent) 0%, transparent); }
+  3%   { box-shadow: 0 0 0 0 color-mix(in oklab, var(--db-accent) 55%, transparent); }
+  16%  { box-shadow: 0 0 0 16px color-mix(in oklab, var(--db-accent) 0%, transparent); }
+  100% { box-shadow: 0 0 0 16px color-mix(in oklab, var(--db-accent) 0%, transparent); }
+}
+.db-dock[data-motion="bold"] .db-btn { animation: dbNudge 5.5s ease-in-out 1.6s infinite; }
+@keyframes dbNudge {
+  0%, 12%, 100% { transform: translateY(0); }
+  4%  { transform: translateY(-4px); }
+  8%  { transform: translateY(0); }
+}
+/* hover always wins over the idle nudge */
+.db-dock .db-btn:hover { animation: none; }
+
+/* ---- FAB variant (circle → expands to pill on hover/focus) ----------- */
+.db-dock[data-variant="fab"] .db-btn {
+  padding: 0;
+  gap: 0;
+  width: var(--db-h);
+  justify-content: center;
+  border-radius: 999px;
+  overflow: hidden;
+  transition: width .35s ease, gap .35s ease, padding .35s ease,
+    transform .42s cubic-bezier(.34, 1.56, .64, 1), box-shadow .25s ease;
+}
+.db-dock[data-variant="fab"] .db-ico-lead { width: var(--db-h); height: var(--db-h); justify-content: center; }
+.db-dock[data-variant="fab"] .db-ico-lead svg { width: 1.35em; height: 1.35em; }
+.db-dock[data-variant="fab"] .db-label,
+.db-dock[data-variant="fab"] .db-arr {
+  max-width: 0; opacity: 0; overflow: hidden;
+  transition: max-width .35s ease, opacity .22s ease;
+}
+.db-dock[data-variant="fab"] .db-btn:hover,
+.db-dock[data-variant="fab"] .db-btn:focus-visible {
+  padding-right: 1.15em; gap: .45em;
+}
+.db-dock[data-variant="fab"] .db-btn:hover .db-label,
+.db-dock[data-variant="fab"] .db-btn:focus-visible .db-label { max-width: 220px; opacity: 1; }
+
+/* ---- CARD variant (pill + popout menu on hover/focus) ---------------- */
+.db-card { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+.db-dock[data-pos="bl"] .db-card { align-items: flex-start; }
+.db-pop {
+  width: 268px;
+  background: #fff;
+  border-radius: 18px;
+  padding: 8px;
+  overflow: hidden;
+  box-shadow: 0 18px 50px rgba(15, 23, 42, .22), 0 4px 14px rgba(15, 23, 42, .10), 0 0 0 1px rgba(15, 23, 42, .06);
+  transform-origin: bottom right;
+  transform: translateY(10px) scale(.94);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform .3s cubic-bezier(.34, 1.4, .64, 1), opacity .24s ease;
+}
+.db-card:hover .db-pop,
+.db-card:focus-within .db-pop { transform: none; opacity: 1; pointer-events: auto; }
+.db-pop-hd {
+  padding: 10px 12px 8px;
+  font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  color: color-mix(in oklab, var(--db-accent) 70%, #475569);
+}
+.db-pop-row {
+  display: flex; align-items: center; gap: 11px;
+  padding: 10px 12px; border-radius: 10px; text-decoration: none; color: #0f172a;
+  transition: background .15s ease;
+}
+.db-pop-row:hover { background: color-mix(in oklab, var(--db-accent) 9%, #fff); }
+.db-pop-ic {
+  flex: none; width: 34px; height: 34px; border-radius: 9px;
+  display: grid; place-items: center; color: var(--db-accent);
+  background: color-mix(in oklab, var(--db-accent) 12%, #fff);
+}
+.db-pop-ic svg { width: 17px; height: 17px; }
+.db-pop-t { display: flex; flex-direction: column; gap: 1px; }
+.db-pop-t b { font-size: 14px; font-weight: 650; line-height: 1.2; }
+.db-pop-t span { font-size: 12px; color: #64748b; line-height: 1.2; }
+.db-caret { display: inline-flex; margin-left: .05em; opacity: .9; transition: transform .3s ease; }
+.db-caret svg { width: .9em; height: .9em; display: block; }
+.db-card:hover .db-caret { transform: rotate(180deg); }
+
+/* ---- responsive: tablets (≤1024px) ----------------------------------- */
+@media (max-width: 1024px) {
+  /* --db-h arrives inline from button.php, so !important is required to win */
+  .db-dock { --db-h: 50px !important; }
+  .db-dock[data-pos="br"] { right: max(18px, env(safe-area-inset-right)); bottom: max(18px, env(safe-area-inset-bottom)); }
+  .db-dock[data-pos="bl"] { left: max(18px, env(safe-area-inset-left)); bottom: max(18px, env(safe-area-inset-bottom)); }
+}
+
+/* ---- responsive: phones (≤600px) ------------------------------------- */
+@media (max-width: 600px) {
+  .db-dock { --db-h: 46px !important; }            /* ≥44px keeps a comfy tap target */
+  .db-dock[data-pos="br"] { right: max(14px, env(safe-area-inset-right)); bottom: max(14px, env(safe-area-inset-bottom)); }
+  .db-dock[data-pos="bl"] { left: max(14px, env(safe-area-inset-left)); bottom: max(14px, env(safe-area-inset-bottom)); }
+  .db-btn { padding: 0 .9em 0 .8em; font-size: 13px; gap: .45em; }
+  .db-pop { width: min(280px, calc(100vw - 28px)); } /* popout never overflows the viewport */
+  .db-pop-row { padding: 9px 10px; }
+  /* tighter attention ring so the pulse doesn't reach across a small screen */
+  .db-dock[data-motion="bold"] .db-pulse { animation-name: dbPulseSm; }
+}
+@keyframes dbPulseSm {
+  0%   { box-shadow: 0 0 0 0 color-mix(in oklab, var(--db-accent) 0%, transparent); }
+  3%   { box-shadow: 0 0 0 0 color-mix(in oklab, var(--db-accent) 55%, transparent); }
+  16%  { box-shadow: 0 0 0 11px color-mix(in oklab, var(--db-accent) 0%, transparent); }
+  100% { box-shadow: 0 0 0 11px color-mix(in oklab, var(--db-accent) 0%, transparent); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .db-dock * { animation: none !important; }
+}
