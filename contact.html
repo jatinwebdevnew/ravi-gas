@@ -2,13 +2,26 @@
 <html lang="en-US">
 
 <head>
+  <script>
+    // Die-hard fix: Suppress Webpack chunk load errors and JQMIGRATE logs
+    window.addEventListener('unhandledrejection', function(e) {
+      if (e.reason && (e.reason.name === 'ChunkLoadError' || (e.reason.message && e.reason.message.includes('webpack')) || (e.reason.stack && e.reason.stack.includes('webpack')))) {
+        e.preventDefault();
+      }
+    });
+    const originalLog = window.console.log;
+    window.console.log = function() {
+      if (arguments[0] && typeof arguments[0] === 'string' && arguments[0].includes('JQMIGRATE')) return;
+      originalLog.apply(console, arguments);
+    };
+  </script>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1" name="viewport" />
   <title>Contact - Ravi Gas Service</title>
   <meta content="noindex, nofollow" name="robots" />
   <link href="//fonts.googleapis.com" rel="dns-prefetch" />
-  <link href="index.htmlfeed/" rel="alternate" title="Ravigas » Feed" type="application/rss+xml" />
-  <link href="index.htmlcomments/feed/" rel="alternate" title="Ravigas » Comments Feed" type="application/rss+xml" />
+  <link href="feed/" rel="alternate" title="Ravigas » Feed" type="application/rss+xml" />
+  <link href="comments/feed/" rel="alternate" title="Ravigas » Comments Feed" type="application/rss+xml" />
   <link href="#" rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" />
   <link href="#" rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" />
   <style id="wp-img-auto-sizes-contain-inline-css">
@@ -491,21 +504,20 @@
   <script id="jquery-core-js" src="./site-includes/js/jquery/jquery.min.js?ver=3.7.1">
   </script>
   <script>jQuery.migrateMute = true;</script>
-  <script id="jquery-migrate-js" src="./site-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1">
-  </script>
+  
   <script id="zilla-likes-js-extra">
-    var zilla_likes = { "ajaxurl": "index.htmlwp-admin/admin-ajax.php" };
+    var zilla_likes = { "ajaxurl": "wp-admin/admin-ajax.php" };
     //# sourceURL=zilla-likes-js-extra
   </script>
   <script id="zilla-likes-js" src="./site-content/plugins/pt-ravigas-addons/assets/js/zilla-likes.js?ver=7.0.1">
   </script>
-  <link href="index.htmlwp-json/" rel="https://api.w.org/" />
-  <link href="index.htmlwp-json/wp/v2/pages/48" rel="alternate" title="JSON" type="application/json" />
-  <link href="index.htmlxmlrpc.php?rsd" rel="EditURI" title="RSD" type="application/rsd+xml" />
+  <link href="wp-json/" rel="https://api.w.org/" />
+  <link href="wp-json/wp/v2/pages/48" rel="alternate" title="JSON" type="application/json" />
+  <link href="xmlrpc.php?rsd" rel="EditURI" title="RSD" type="application/rsd+xml" />
   <meta content="WordPress 7.0.1" name="generator" />
   <meta content="WooCommerce 8.6.4" name="generator" />
-  <link href="index.htmlcontact/" rel="canonical" />
-  <link href="index.html?p=48" rel="shortlink" />
+  <link href="contact/" rel="canonical" />
+  <link href="?p=48" rel="shortlink" />
   <meta content="Redux 4.4.13" name="generator" />
   <noscript>
     <style>
@@ -1143,7 +1155,7 @@
             class="elementor-element elementor-element-e9d8a92 elementor-icon-list--layout-inline elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list"
             data-element_type="widget" data-id="e9d8a92" data-widget_type="icon-list.default">
             <div class="elementor-widget-container">
-              <link href="index.htmlsite-content/plugins/elementor/assets/css/widget-icon-list.min.css"
+              <link href="site-content/plugins/elementor/assets/css/widget-icon-list.min.css"
                 rel="stylesheet" />
               <ul class="elementor-icon-list-items elementor-inline-items">
                 <li class="elementor-icon-list-item elementor-inline-item">
@@ -1637,10 +1649,13 @@
       <div class="entry-content">
         <div class="elementor elementor-48" data-elementor-id="48" data-elementor-post-type="page"
           data-elementor-type="wp-page">
-          <div background_background":"classic","content_width":"boxed"}"=""
-            class="elementor-element elementor-element-6cde2f6 e-flex e-con-boxed e-con e-parent"
-            data-core-v316-plus="true" data-element_type="container" data-id="6cde2f6" data-settings="{">
-            <div class="e-con-inner">
+          <div class="elementor-element elementor-element-6cde2f6 e-flex e-con-boxed e-con e-parent"
+            data-core-v316-plus="true" data-element_type="container" data-id="6cde2f6" 
+            data-settings='{"background_background":"classic","content_width":"boxed"}'
+            style="position: relative; overflow: hidden;">
+            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url('assets_local/images/gas_service_hero.png'); background-size: cover; background-position: center; transform: scale(2); z-index: 0;"></div>
+            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); z-index: 0;"></div>
+            <div class="e-con-inner" style="position: relative; z-index: 1;">
               <div class="elementor-element elementor-element-801df2f elementor-widget elementor-widget-pt-breadcrumbs"
                 data-element_type="widget" data-id="801df2f" data-widget_type="pt-breadcrumbs.default">
                 <div class="elementor-widget-container">
@@ -1770,8 +1785,6 @@
                       <div class="pt-icon-box-title">EMAIL US</div>
                       <div class="pt-icon-box-text">
                         info@ravigas.in<br />sales@ravigas.in
-                        <br />
-                        info@ravigas.in<br />sales@ravigas.in
                       </div>
                     </div>
                   </div>
@@ -1810,7 +1823,7 @@
                       }
                     </style>
                     <img alt="" class="attachment-full size-full wp-image-458" decoding="async" fetchpriority="high"
-                      height="840" src="images/contact-image.png" width="784" />
+                      height="840" src="images/ravigas-6.jpg" width="784" />
                   </div>
                 </div>
               </div>
@@ -1843,16 +1856,9 @@
                           <ul>
                           </ul>
                         </div>
-                        <form action="/ravigas/contact/#wpcf7-f780-p48-o1" aria-label="Contact form"
-                          class="wpcf7-form init" data-status="init" method="post" novalidate="novalidate">
-                          <div style="display: none;">
-                            <input name="_wpcf7" type="hidden" value="780" />
-                            <input name="_wpcf7_version" type="hidden" value="5.8.7" />
-                            <input name="_wpcf7_locale" type="hidden" value="en_US" />
-                            <input name="_wpcf7_unit_tag" type="hidden" value="wpcf7-f780-p48-o1" />
-                            <input name="_wpcf7_container_post" type="hidden" value="48" />
-                            <input name="_wpcf7_posted_data_hash" type="hidden" value="" />
-                          </div>
+                        <form id="contactForm" action="https://api.web3forms.com/submit" aria-label="Contact form" class="wpcf7-form init" method="POST">
+                          <input type="hidden" name="access_key" value="986fe31a-781b-434b-b938-8d419edd13a4">
+                          <input type="hidden" name="subject" value="New Contact from Ravi Gas Website">
                           <div class="row">
                             <div class="col-12 col-md-6 mb-3">
                               <p>
@@ -1860,10 +1866,10 @@
                                   Your name
                                 </label>
                                 <br />
-                                <span class="wpcf7-form-control-wrap" data-name="your-name"> <input aria-invalid="false"
+                                <span class="wpcf7-form-control-wrap" data-name="name"> <input aria-invalid="false"
                                     aria-required="true" autocomplete="name"
-                                    class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" name="your-name"
-                                    size="40" type="text" value="" />
+                                    class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" name="name"
+                                    size="40" type="text" value="" required />
                                 </span>
                               </p>
                             </div>
@@ -1873,10 +1879,10 @@
                                   Your E-Mail
                                 </label>
                                 <br />
-                                <span class="wpcf7-form-control-wrap" data-name="your-email"> <input
+                                <span class="wpcf7-form-control-wrap" data-name="email"> <input
                                     aria-invalid="false" aria-required="true" autocomplete="email"
                                     class="wpcf7-form-control wpcf7-email wpcf7-validates-as-required wpcf7-text wpcf7-validates-as-email"
-                                    name="your-email" size="40" type="email" value="" />
+                                    name="email" size="40" type="email" value="" required />
                                 </span>
                               </p>
                             </div>
@@ -1887,20 +1893,88 @@
                                 Your question
                               </label>
                               <br />
-                              <span class="wpcf7-form-control-wrap" data-name="your-message"> <textarea
+                              <span class="wpcf7-form-control-wrap" data-name="message"> <textarea
                                   aria-invalid="false" class="wpcf7-form-control wpcf7-textarea" cols="40"
-                                  name="your-message" rows="4">                                </textarea>
+                                  name="message" rows="4" required></textarea>
                               </span>
                             </p>
                           </div>
-                          <div>
+                          <div style="margin-bottom: 20px;">
                             <p>
-                              <input class="wpcf7-form-control wpcf7-submit has-spinner" type="submit" value="Submit" />
+                              <button id="submitButton" class="wpcf7-form-control wpcf7-submit" type="submit" style="cursor: pointer; transition: all 0.3s ease; padding: 15px 40px; background-color: #C17F4C; color: #ffffff; border: none; font-weight: 600; font-size: 17px; display: inline-flex; align-items: center; justify-content: center; min-width: 160px; border-radius: 0;">
+                                Submit <span style="margin-left: 8px; font-weight: 400; font-size: 20px;">+</span>
+                              </button>
                             </p>
                           </div>
-                          <div aria-hidden="true" class="wpcf7-response-output">
-                          </div>
+                          <div id="formResult" style="display: none; padding: 15px; border-radius: 4px; font-weight: 500; font-size: 16px; margin-top: 10px;"></div>
                         </form>
+
+                        <script>
+                          document.getElementById('contactForm').addEventListener('submit', function(e) {
+                              e.preventDefault();
+                              const form = e.target;
+                              const formData = new FormData(form);
+                              const resultDiv = document.getElementById('formResult');
+                              const submitBtn = document.getElementById('submitButton');
+                              
+                              // UI update for loading
+                              submitBtn.disabled = true;
+                              submitBtn.style.opacity = '0.7';
+                              submitBtn.innerHTML = '<span style="display:inline-block; margin-right:8px; border:2px solid currentColor; border-right-color:transparent; border-radius:50%; width:16px; height:16px; animation: spin 1s linear infinite;"></span> Submitting...';
+                              resultDiv.style.display = 'none';
+
+                              // Ensure keyframes for spin exist
+                              if (!document.getElementById('spinner-style')) {
+                                  const style = document.createElement('style');
+                                  style.id = 'spinner-style';
+                                  style.innerHTML = '@keyframes spin { 100% { transform: rotate(360deg); } }';
+                                  document.head.appendChild(style);
+                              }
+
+                              fetch('https://api.web3forms.com/submit', {
+                                  method: 'POST',
+                                  body: formData
+                              })
+                              .then(async response => {
+                                  let json = await response.json();
+                                  if (response.status == 200) {
+                                      resultDiv.style.display = 'block';
+                                      resultDiv.style.backgroundColor = '#d4edda';
+                                      resultDiv.style.color = '#155724';
+                                      resultDiv.style.border = '1px solid #c3e6cb';
+                                      resultDiv.innerHTML = "✅ Success! Your message has been sent successfully. We will get back to you soon.";
+                                      form.reset();
+                                  } else {
+                                      console.log(response);
+                                      resultDiv.style.display = 'block';
+                                      resultDiv.style.backgroundColor = '#f8d7da';
+                                      resultDiv.style.color = '#721c24';
+                                      resultDiv.style.border = '1px solid #f5c6cb';
+                                      resultDiv.innerHTML = "❌ " + (json.message ? json.message : "Something went wrong! Please try again.");
+                                  }
+                              })
+                              .catch(error => {
+                                  console.log(error);
+                                  resultDiv.style.display = 'block';
+                                  resultDiv.style.backgroundColor = '#f8d7da';
+                                  resultDiv.style.color = '#721c24';
+                                  resultDiv.style.border = '1px solid #f5c6cb';
+                                  resultDiv.innerHTML = "❌ Something went wrong! Please check your connection and try again.";
+                              })
+                              .finally(() => {
+                                  submitBtn.disabled = false;
+                                  submitBtn.style.opacity = '1';
+                                  submitBtn.innerHTML = 'Submit';
+                                  
+                                  // Hide success message after 7 seconds
+                                  setTimeout(() => {
+                                      if (resultDiv.style.color === 'rgb(21, 87, 36)' || resultDiv.style.color === '#155724') {
+                                          resultDiv.style.display = 'none';
+                                      }
+                                  }, 7000);
+                              });
+                          });
+                        </script>
                       </div>
                     </div>
                   </div>
@@ -2241,16 +2315,11 @@
       document.body.className = c;
     })();
   </script>
-  <script id="swv-js" src="./site-content/plugins/contact-form-7/includes/swv/js/index.js?ver=5.8.7">
-  </script>
-  <script id="contact-form-7-js-extra">
-    var wpcf7 = { "api": { "root": "index.htmlwp-json/", "namespace": "contact-form-7/v1" }, "cached": "1" };
-    //# sourceURL=contact-form-7-js-extra
-  </script>
-  <script id="contact-form-7-js" src="./site-content/plugins/contact-form-7/includes/js/index.js?ver=5.8.7">
-  </script>
+  
+  
+  
   <script id="wc-order-attribution-js-extra">
-    var wc_order_attribution = { "params": { "lifetime": 1.0e-5, "session": 30, "ajaxurl": "index.htmlwp-admin/admin-ajax.php", "prefix": "wc_order_attribution_", "allowTracking": true }, "fields": { "source_type": "current.typ", "referrer": "current_add.rf", "utm_campaign": "current.cmp", "utm_source": "current.src", "utm_medium": "current.mdm", "utm_content": "current.cnt", "utm_id": "current.id", "utm_term": "current.trm", "session_entry": "current_add.ep", "session_start_time": "current_add.fd", "session_pages": "session.pgs", "session_count": "udata.vst", "user_agent": "udata.uag" } };
+    var wc_order_attribution = { "params": { "lifetime": 1.0e-5, "session": 30, "ajaxurl": "wp-admin/admin-ajax.php", "prefix": "wc_order_attribution_", "allowTracking": true }, "fields": { "source_type": "current.typ", "referrer": "current_add.rf", "utm_campaign": "current.cmp", "utm_source": "current.src", "utm_medium": "current.mdm", "utm_content": "current.cnt", "utm_id": "current.id", "utm_term": "current.trm", "session_entry": "current_add.ep", "session_start_time": "current_add.fd", "session_pages": "session.pgs", "session_count": "udata.vst", "user_agent": "udata.uag" } };
     //# sourceURL=wc-order-attribution-js-extra
   </script>
   <script id="gsap-js" src="./site-content/plugins/pt-ravigas-addons/assets/js/gsap.min.js?ver=3.4.2">
@@ -2272,7 +2341,7 @@
   <script id="swiper-js" src="./site-content/plugins/pt-ravigas-addons/assets/js/swiper.min.js?ver=8.3.2">
   </script>
   <script id="pt-load-more-js-extra">
-    var yprm_ajax = { "url": "index.htmlwp-admin/admin-ajax.php", "home_url": "index.html" };
+    var yprm_ajax = { "url": "wp-admin/admin-ajax.php", "home_url": "index.html" };
     //# sourceURL=pt-load-more-js-extra
   </script>
   <script id="pt-load-more-js" src="./site-content/plugins/pt-ravigas-addons/assets/js/load-more.js?ver=1.0.0">
@@ -2289,7 +2358,7 @@
   <script id="jquery-ui-core-js" src="./site-includes/js/jquery/ui/core.min.js?ver=1.13.3">
   </script>
   <script id="elementor-frontend-js-before">
-    var elementorFrontendConfig = { "environmentMode": { "edit": false, "wpPreview": false, "isScriptDebug": false }, "i18n": { "shareOnFacebook": "Share on Facebook", "shareOnTwitter": "Share on Twitter", "pinIt": "Pin it", "download": "Download", "downloadImage": "Download image", "fullscreen": "Fullscreen", "zoom": "Zoom", "share": "Share", "playVideo": "Play Video", "previous": "Previous", "next": "Next", "close": "Close", "a11yCarouselWrapperAriaLabel": "Carousel | Horizontal scrolling: Arrow Left & Right", "a11yCarouselPrevSlideMessage": "Previous slide", "a11yCarouselNextSlideMessage": "Next slide", "a11yCarouselFirstSlideMessage": "This is the first slide", "a11yCarouselLastSlideMessage": "This is the last slide", "a11yCarouselPaginationBulletMessage": "Go to slide" }, "is_rtl": false, "breakpoints": { "xs": 0, "sm": 480, "md": 768, "lg": 1025, "xl": 1440, "xxl": 1600 }, "responsive": { "breakpoints": { "mobile": { "label": "Mobile Portrait", "value": 767, "default_value": 767, "direction": "max", "is_enabled": true }, "mobile_extra": { "label": "Mobile Landscape", "value": 880, "default_value": 880, "direction": "max", "is_enabled": false }, "tablet": { "label": "Tablet Portrait", "value": 1024, "default_value": 1024, "direction": "max", "is_enabled": true }, "tablet_extra": { "label": "Tablet Landscape", "value": 1200, "default_value": 1200, "direction": "max", "is_enabled": false }, "laptop": { "label": "Laptop", "value": 1366, "default_value": 1366, "direction": "max", "is_enabled": false }, "widescreen": { "label": "Widescreen", "value": 2400, "default_value": 2400, "direction": "min", "is_enabled": false } } }, "version": "3.19.2", "is_static": false, "experimentalFeatures": { "e_optimized_assets_loading": true, "e_optimized_css_loading": true, "e_font_icon_svg": true, "additional_custom_breakpoints": true, "container": true, "e_swiper_latest": true, "theme_builder_v2": true, "block_editor_assets_optimize": true, "ai-layout": true, "landing-pages": true, "e_image_loading_optimization": true, "e_global_styleguide": true, "page-transitions": true, "notes": true, "form-submissions": true, "e_scroll_snap": true }, "urls": { "assets": "index.htmlsite-content\/plugins\/elementor\/assets\/" }, "swiperClass": "swiper", "settings": { "page": [], "editorPreferences": [] }, "kit": { "active_breakpoints": ["viewport_mobile", "viewport_tablet"], "global_image_lightbox": "yes", "lightbox_enable_counter": "yes", "lightbox_enable_fullscreen": "yes", "lightbox_enable_zoom": "yes", "lightbox_enable_share": "yes", "lightbox_title_src": "title", "lightbox_description_src": "description", "woocommerce_notices_elements": [] }, "post": { "id": 48, "title": "Contact%20%E2%80%93%20Ravigas", "excerpt": "", "featuredImage": false } };
+    var elementorFrontendConfig = { "environmentMode": { "edit": false, "wpPreview": false, "isScriptDebug": false }, "i18n": { "shareOnFacebook": "Share on Facebook", "shareOnTwitter": "Share on Twitter", "pinIt": "Pin it", "download": "Download", "downloadImage": "Download image", "fullscreen": "Fullscreen", "zoom": "Zoom", "share": "Share", "playVideo": "Play Video", "previous": "Previous", "next": "Next", "close": "Close", "a11yCarouselWrapperAriaLabel": "Carousel | Horizontal scrolling: Arrow Left & Right", "a11yCarouselPrevSlideMessage": "Previous slide", "a11yCarouselNextSlideMessage": "Next slide", "a11yCarouselFirstSlideMessage": "This is the first slide", "a11yCarouselLastSlideMessage": "This is the last slide", "a11yCarouselPaginationBulletMessage": "Go to slide" }, "is_rtl": false, "breakpoints": { "xs": 0, "sm": 480, "md": 768, "lg": 1025, "xl": 1440, "xxl": 1600 }, "responsive": { "breakpoints": { "mobile": { "label": "Mobile Portrait", "value": 767, "default_value": 767, "direction": "max", "is_enabled": true }, "mobile_extra": { "label": "Mobile Landscape", "value": 880, "default_value": 880, "direction": "max", "is_enabled": false }, "tablet": { "label": "Tablet Portrait", "value": 1024, "default_value": 1024, "direction": "max", "is_enabled": true }, "tablet_extra": { "label": "Tablet Landscape", "value": 1200, "default_value": 1200, "direction": "max", "is_enabled": false }, "laptop": { "label": "Laptop", "value": 1366, "default_value": 1366, "direction": "max", "is_enabled": false }, "widescreen": { "label": "Widescreen", "value": 2400, "default_value": 2400, "direction": "min", "is_enabled": false } } }, "version": "3.19.2", "is_static": false, "experimentalFeatures": { "e_optimized_assets_loading": true, "e_optimized_css_loading": true, "e_font_icon_svg": true, "additional_custom_breakpoints": true, "container": true, "e_swiper_latest": true, "theme_builder_v2": true, "block_editor_assets_optimize": true, "ai-layout": true, "landing-pages": true, "e_image_loading_optimization": true, "e_global_styleguide": true, "page-transitions": true, "notes": true, "form-submissions": true, "e_scroll_snap": true }, "urls": { "assets": "site-content\/plugins\/elementor\/assets\/" }, "swiperClass": "swiper", "settings": { "page": [], "editorPreferences": [] }, "kit": { "active_breakpoints": ["viewport_mobile", "viewport_tablet"], "global_image_lightbox": "yes", "lightbox_enable_counter": "yes", "lightbox_enable_fullscreen": "yes", "lightbox_enable_zoom": "yes", "lightbox_enable_share": "yes", "lightbox_title_src": "title", "lightbox_description_src": "description", "woocommerce_notices_elements": [] }, "post": { "id": 48, "title": "Contact%20%E2%80%93%20Ravigas", "excerpt": "", "featuredImage": false } };
     //# sourceURL=elementor-frontend-js-before
   </script>
   <script id="elementor-frontend-js" src="./site-content/plugins/elementor/assets/js/frontend.min.js?ver=3.19.2">
@@ -2316,7 +2385,7 @@
     //# sourceURL=wp-i18n-js-after
   </script>
   <script id="elementor-pro-frontend-js-before">
-    var ElementorProFrontendConfig = { "ajaxurl": "index.htmlwp-admin\/admin-ajax.php", "nonce": "a09414e298", "urls": { "assets": "index.htmlsite-content\/plugins\/pro-elements\/assets\/", "rest": "index.htmlwp-json\/" }, "shareButtonsNetworks": { "facebook": { "title": "Facebook", "has_counter": true }, "twitter": { "title": "Twitter" }, "linkedin": { "title": "LinkedIn", "has_counter": true }, "pinterest": { "title": "Pinterest", "has_counter": true }, "reddit": { "title": "Reddit", "has_counter": true }, "vk": { "title": "VK", "has_counter": true }, "odnoklassniki": { "title": "OK", "has_counter": true }, "tumblr": { "title": "Tumblr" }, "digg": { "title": "Digg" }, "skype": { "title": "Skype" }, "stumbleupon": { "title": "StumbleUpon", "has_counter": true }, "mix": { "title": "Mix" }, "telegram": { "title": "Telegram" }, "pocket": { "title": "Pocket", "has_counter": true }, "xing": { "title": "XING", "has_counter": true }, "whatsapp": { "title": "WhatsApp" }, "email": { "title": "Email" }, "print": { "title": "Print" } }, "woocommerce": { "menu_cart": { "cart_page_url": "index.htmlcart\/", "checkout_page_url": "index.htmlcheckout\/", "fragments_nonce": "4bdb18dd1b" } }, "facebook_sdk": { "lang": "en_US", "app_id": "" }, "lottie": { "defaultAnimationUrl": "index.htmlsite-content\/plugins\/pro-elements\/modules\/lottie\/assets\/animations\/default.json" } };
+    var ElementorProFrontendConfig = { "ajaxurl": "wp-admin\/admin-ajax.php", "nonce": "a09414e298", "urls": { "assets": "site-content\/plugins\/pro-elements\/assets\/", "rest": "wp-json\/" }, "shareButtonsNetworks": { "facebook": { "title": "Facebook", "has_counter": true }, "twitter": { "title": "Twitter" }, "linkedin": { "title": "LinkedIn", "has_counter": true }, "pinterest": { "title": "Pinterest", "has_counter": true }, "reddit": { "title": "Reddit", "has_counter": true }, "vk": { "title": "VK", "has_counter": true }, "odnoklassniki": { "title": "OK", "has_counter": true }, "tumblr": { "title": "Tumblr" }, "digg": { "title": "Digg" }, "skype": { "title": "Skype" }, "stumbleupon": { "title": "StumbleUpon", "has_counter": true }, "mix": { "title": "Mix" }, "telegram": { "title": "Telegram" }, "pocket": { "title": "Pocket", "has_counter": true }, "xing": { "title": "XING", "has_counter": true }, "whatsapp": { "title": "WhatsApp" }, "email": { "title": "Email" }, "print": { "title": "Print" } }, "woocommerce": { "menu_cart": { "cart_page_url": "cart\/", "checkout_page_url": "checkout\/", "fragments_nonce": "4bdb18dd1b" } }, "facebook_sdk": { "lang": "en_US", "app_id": "" }, "lottie": { "defaultAnimationUrl": "site-content\/plugins\/pro-elements\/modules\/lottie\/assets\/animations\/default.json" } };
     //# sourceURL=elementor-pro-frontend-js-before
   </script>
   <script id="elementor-pro-frontend-js" src="./site-content/plugins/pro-elements/assets/js/frontend.min.js?ver=3.18.3">
